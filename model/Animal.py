@@ -11,7 +11,7 @@ class Animal:
         self.horasDormir = horasDormir
         self.jugar = jugar
 
-    def infoAnimal(self):
+    def mostrarAnimal(self):
         print("Id: ", self.id, " | Nombre: ", self.nombre, " | Especie: ", self.especie, " | Edad: ", self.edad, " | Tipo de habitat: ", self.tipoHabitat)
         print(" | Dieta: ", self.dieta, "\n")
 
@@ -41,4 +41,3 @@ class Animal:
             print(self.nombre, " esta comiendo ", alimento, "\n")
         else:
             print(alimento, " no pertenece a la dieta de ", self.nombre, "\n")
-
