@@ -11,6 +11,11 @@ class Habitat:
     def agregarAnimal(self, Animal):
         id = Animal.id
         self.mapaAnimales[id] = Animal
+        self.numeroAnimales += 1
+    
+    def eliminarAnimal(self, id):
+        self.mapaAnimales.pop(id)
+        self.numeroAnimales -= 1
 
     def imprimirAnimales(self):
         cont = 1
