@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2d437b9-4b8a-4f54-92a3-8c0d83edbca2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Habitat.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Habitat.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +26,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2PIkUbtU3IRRO8Wzp6JB11HzkEl" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -54,7 +57,7 @@
       <workItem from="1683152005747" duration="2138000" />
       <workItem from="1683154196409" duration="90000" />
       <workItem from="1683155883776" duration="1132000" />
-      <workItem from="1683157123442" duration="1860000" />
+      <workItem from="1683157123442" duration="7804000" />
     </task>
     <servers />
   </component>
