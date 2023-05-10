@@ -38,7 +38,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+<<<<<<< HEAD
+=======
     "last_opened_file_path": "C:/Users/jpova/Documents/2023-1/POO/crud_example",
+>>>>>>> c0d2992792bc46d81be837019150a9ec544c7286
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,8 +59,16 @@
       <updated>1683151999875</updated>
       <workItem from="1683152005747" duration="2138000" />
       <workItem from="1683154196409" duration="90000" />
+<<<<<<< HEAD
+      <workItem from="1683158653740" duration="4628000" />
+=======
       <workItem from="1683155883776" duration="1132000" />
+<<<<<<< HEAD
       <workItem from="1683157123442" duration="7804000" />
+=======
+      <workItem from="1683157123442" duration="1860000" />
+>>>>>>> c0d2992792bc46d81be837019150a9ec544c7286
+>>>>>>> 084db3a6df6c0c991955eeca34c05937094ba562
     </task>
     <servers />
   </component>
