@@ -75,7 +75,7 @@ class sistema:
 
         
     def menuCrearHabitat(self, Zoo):
-        arrNums=list(range(-10,41))
+        arrNums = list(range(-10, 41))
         st.divider()
         with st.container():
             st.subheader("Formulario para crear e ingresar un nuevo habitat")
@@ -83,11 +83,20 @@ class sistema:
             tipoHabitat = st.selectbox("Elige el tipo de habitat:", Zoo.tipos)
             capacidad = st.slider("Ingresa la capacidad del habitat:", key = 7, min_value = 1, max_value = 10, step = 1)
             dieta = st.selectbox("Elige el tipo de dieta del habitat:", Zoo.dietas)
-            temp = st.select_slider("Ingresa el rango de temperatura",options = arrNums, value=(-10,40))
+            temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
             botonAccion = st.button("Ingresar habitat")
 
         if botonAccion:
-            pass
+            if tipoHabitat == "Desertico":
+                nuevoHabitat = habitatModel.desertico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+            elif tipoHabitat == "Selvatico":
+                nuevoHabitat = habitatModel.selvatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+            elif tipoHabitat == "Polar":
+                nuevoHabitat = habitatModel.polar(nombre, tipoHabitat, capacidad, dieta, temperatura)
+            elif tipoHabitat == "Acuatico":
+                nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+            st.success("El habitat fue creado correctamente")
+            return nuevoHabitat
 
     def agregar_animal_habitat(self):
         animal =
@@ -97,3 +106,4 @@ class sistema:
 
     def mostrar_mensaje_error(self, mensaje):
         st.error(mensaje)
+
