@@ -139,8 +139,7 @@ class sistema:
                 )
                 st.table(datos)
                 nombreH = st.selectbox("Seleccione el habitat del animal: ")
-
-
+                
     def getInfo(self, id, animales):
         for animal in animales:
             if animal.id == id:
