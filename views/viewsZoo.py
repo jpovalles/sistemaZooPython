@@ -91,7 +91,6 @@ class sistema:
                 nuevoHabitat = habitatModel.polar(nombre, tipoHabitat, capacidad, dieta, temperatura)
             elif tipoHabitat == "Acuatico":
                 nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
-            self.zoologico.habitats.append(nuevoHabitat)
             st.success("El habitat fue creado correctamente")
             return nuevoHabitat
 
