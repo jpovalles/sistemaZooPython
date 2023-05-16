@@ -3,12 +3,18 @@ class Zoo:
         self.idAnimal = idAnimal
         self.comida = {}
         self.habitats = []
+        self.animales = []
         self.comida["Carnivoro"] = []
         self.comida["Omnivoro"] = []
         self.comida["Herbivoro"] = []
     
     def agregarHabitat(self, habitat):
         self.habitats.append(habitat)
+        return True
+
+    def agregarAnimal(self, animal):
+        self.animales.append(animal)
+        self.idAnimal = self.idAnimal + 1
         return True
     
     def buscarComida(self, tipoDieta, alimento):
