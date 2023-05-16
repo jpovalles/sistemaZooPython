@@ -5,7 +5,7 @@ class Habitat:
         self.capacidad = capacidad
         self.numeroAnimales = 0
         self.dieta = dieta
-        self.temperatura = temperatura
+        self.temperatura = ()
         self.mapaAnimales = dict()
 
     def agregarAnimal(self, Animal):
@@ -58,3 +58,5 @@ class acuatico(Habitat):
         super().__init__(nombre, tipo, capacidad, dieta, temperatura)
         self.corrientesMarinas = False
         self.limpieza = True
+
+## Hacer sobrecarga de imprimir habitats para las clases hijas
