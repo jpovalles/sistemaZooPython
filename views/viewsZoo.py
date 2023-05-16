@@ -80,9 +80,9 @@ class sistema:
         st.divider()
         with st.container():
             st.subheader("Formulario para crear e ingresar un nuevo habitat")
-            nombre = st.text_input("Nombre del habitat:", key=69)
+            nombre = st.text_input("Nombre del habitat:", key=7)
             tipoHabitat = st.selectbox("Elige el tipo de habitat:", self.zoologico.tipos)
-            capacidad = st.slider("Ingresa la capacidad del habitat:", key = 7, min_value = 1, max_value = 10, step = 1)
+            capacidad = st.slider("Ingresa la capacidad del habitat:", key = 8, min_value = 1, max_value = 10, step = 1)
             dieta = st.selectbox("Elige el tipo de dieta del habitat:", self.zoologico.dietas)
             temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
             botonAccion = st.button("Ingresar habitat")

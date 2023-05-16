@@ -7,11 +7,19 @@ class Zoo:
         self.idAnimal = idAnimal
         self.comida = {}
         self.habitats = []
+
+        if "habitats" in st.session_state:
+            self.habitats = st.session_state["habitats"]
+        else:
+            self.habitats = []
+            st.session_state["habitats"] = []
+    
         if "animales" in st.session_state:
             self.animales = st.session_state["animales"]
         else:
             self.animales = {}
             st.session_state["animales"] = {}
+
         self.tipos = ["Desertico", "Selvatico", "Polar", "Acuatico"]
         self.dietas = ["Carnivoro", "Omnivoro", "Herbivoro"]
         self.comida["Carnivoro"] = ["Cerdo", "Pavo", "Pollo"]
@@ -20,6 +28,7 @@ class Zoo:
     
     def agregarHabitat(self, habitat):
         self.habitats.append(habitat)
+        st.session_state["habitats"] = self.habitats
         return True
 
     def agregarAnimal(self, animal):
