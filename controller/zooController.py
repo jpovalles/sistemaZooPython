@@ -1,3 +1,6 @@
+import streamlit as st
+import time
+
 class zooController:
     def __init__(self, modelo, vista):
         self.modelo = modelo
@@ -7,7 +10,7 @@ class zooController:
         if opcion == 1: #CrearAnimal
             pass
         if opcion == 2: #CrearHabitat
-            pass
+            self.vista.menuCrearHabitat(self.modelo.Zoo)
         if opcion == 3: #ListarHabitats y animales
             pass
         if opcion == 4: #AccionAnimales

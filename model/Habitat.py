@@ -34,3 +34,27 @@ class Habitat:
         
         print("Nombre: %s\nTipo de habitat: %s\nCapacidad: %i/%i animales\nDieta: %s\nTemperatura: %i" %(self.nombre, self.tipo, self.numeroAnimales, self.capacidad, self.dieta, self.temperatura))
         print("-------------------------------")
+
+class desertico(Habitat):
+    def __init__(self, nombre, tipo, capacidad, dieta, temperatura):
+        super().__init__(nombre, tipo, capacidad, dieta, temperatura)
+        self.tormentaArena = False
+        self.sequia = True
+
+class selvatico(Habitat):
+    def __init__(self, nombre, tipo, capacidad, dieta, temperatura):
+        super().__init__(nombre, tipo, capacidad, dieta, temperatura)
+        self.vegetacion = False
+        self.llueve = True
+
+class polar(Habitat):
+    def __init__(self, nombre, tipo, capacidad, dieta, temperatura):
+        super().__init__(nombre, tipo, capacidad, dieta, temperatura)
+        self.derretimiento = False
+        self.nieva = True
+
+class acuatico(Habitat):
+    def __init__(self, nombre, tipo, capacidad, dieta, temperatura):
+        super().__init__(nombre, tipo, capacidad, dieta, temperatura)
+        self.corrientesMarinas = False
+        self.limpieza = True
