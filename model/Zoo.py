@@ -4,6 +4,8 @@ class Zoo:
         self.comida = {}
         self.habitats = []
         self.animales = []
+        self.tipos = ["Desertico", "Selvatico", "Polar", "Acuatico"]
+        self.dietas = ["Carnivoro", "Omnivoro", "Herbivoro"]
         self.comida["Carnivoro"] = []
         self.comida["Omnivoro"] = []
         self.comida["Herbivoro"] = []
