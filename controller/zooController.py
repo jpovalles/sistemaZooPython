@@ -16,11 +16,29 @@ class zooController:
                 self.vista.mostrar_mensaje_error("Se presento un error al crear el animal")
         if opcion == 2: #CrearHabitat
             self.vista.menuCrearHabitat()
+            try:
+                nuevoHabitat = self.vista.menuCrearHabitat()
+                if nuevoHabitat:
+                    self.modelo.agregarHabitat(nuevoHabitat)
+            except ValueError:
+                self.vista.mostrar_mensaje_error("Se presento un error al crear el habitat")
         if opcion == 3: #ListarHabitats y animales
-            pass
+            self.vista.listarAnimalesHabitats(self.modelo.animales, self.modelo.habitats)
         if opcion == 4: #AccionAnimales
             pass
         if opcion == 5: #editarDietas
             pass
         if opcion == 6:
             self.vista.agregarAnimalHabitat(self.modelo.animales, self.modelo.habitats)
+    
+    def aplicarFormatoA(self, animales):
+        datos = []
+        for key in animales:
+            datos.append([animales[key].id, animales[key].nombre, animales[key].especie, animales[key].tipoHabitat, animales[key].dieta, animales[key].estado, animales[key].edad, animales[key].temperatura, animales[key].horasDormir])
+        return datos
+
+    def aplicarFormatoH(self, habitats):
+        datos = []
+        for habitat in habitats:
+            datos.append([habitat.nombre, habitat.tipo, habitat.numeroAnimales, habitat.capacidad, habitat.dieta, habitat.temperatura[0], habitat.temperatura[1]])
+        return datos

@@ -96,9 +96,30 @@ class sistema:
                 nuevoHabitat = habitatModel.polar(nombre, tipoHabitat, capacidad, dieta, temperatura)
             elif tipoHabitat == "Acuatico":
                 nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
-            self.zoologico.habitats.append(nuevoHabitat)
             st.success("El habitat fue creado correctamente")
             return nuevoHabitat
+        
+    def listarAnimalesHabitats(self, animales, habitats):
+        st.divider()
+        with st.container():
+            st.subheader("Listado de animales")
+            if len(animales) == 0:
+                st.error("No hay animales para listar")
+            else:
+                datoAnimales = pd.DataFrame(
+                    self.controlador.aplicarFormatoA(animales),
+                    columns = ["ID del animal", "Nombre", "Especie", "Tipo del habitat", "Dieta", "Estado de salud", "Edad", "Temperatura optima", "Horas de sueño"]
+                )
+                st.table(datoAnimales)
+            
+            if len(habitats) == 0:
+                st.error("No hay habitats para listar")
+            else:
+                datosHabitats = pd.DataFrame(
+                    self.controlador.aplicarFormatoH(habitats),
+                    columns = ["Nombre", "Tipo de habitat", "Alojados", "Capacidad", "Dieta", "Temp minima", "Temp maxima"]
+                )
+                st.table(datosHabitats)
 
     def agregarAnimalHabitat(self, animales, habitats):
         st.divider()
@@ -130,4 +151,3 @@ class sistema:
 
     def mostrar_mensaje_error(self, mensaje):
         st.error(mensaje)
-

@@ -3,6 +3,7 @@ import streamlit as st
 
 class Zoo:
     def __init__(self, idAnimal):
+
         self.idAnimal = idAnimal
         self.comida = {}
         self.habitats = []
@@ -13,9 +14,9 @@ class Zoo:
             st.session_state["animales"] = {}
         self.tipos = ["Desertico", "Selvatico", "Polar", "Acuatico"]
         self.dietas = ["Carnivoro", "Omnivoro", "Herbivoro"]
-        self.comida["Carnivoro"] = []
-        self.comida["Omnivoro"] = []
-        self.comida["Herbivoro"] = []
+        self.comida["Carnivoro"] = ["Cerdo", "Pavo", "Pollo"]
+        self.comida["Herbivoro"] = ["Semillas", "Frutas", "Hojas"]
+        self.comida["Omnivoro"] = ["Pescado", "Huevos", "Frutas"]
     
     def agregarHabitat(self, habitat):
         self.habitats.append(habitat)
