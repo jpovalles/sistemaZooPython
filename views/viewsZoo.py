@@ -3,6 +3,7 @@ import model.Habitat as habitatModel
 import model.Zoo as zooModel
 import controller.zooController as zooControl
 import streamlit as st
+import pandas as pd
 
 class sistema:
     def __init__(self):
@@ -93,6 +94,28 @@ class sistema:
                 nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
             st.success("El habitat fue creado correctamente")
             return nuevoHabitat
+        
+    def listarAnimalesHabitats(self, animales, habitats):
+        st.divider()
+        with st.container():
+            st.subheader("Listado de animales")
+            if len(animales) == 0:
+                st.error("No hay animales para listar")
+            else:
+                datoAnimales = pd.Data(
+                    self.controlador.aplicarFormatoA(animales),
+                    columns = ["ID del animal", "Nombre", "Especie", "Tipo del habitat", "Dieta", "Estado de salud", "Edad", "Temperatura optima", "Horas de sueño"]
+                )
+                st.table(datoAnimales)
+            
+            if len(habitats) == 0:
+                st.error("No hay habitats para listar")
+            else:
+                datosHabitats = pd.Data(
+                    self.controlador.aplicarFormatoH(habitats),
+                    columns = ["Nombre", "Tipo de habitat", "Alojados", "Capacidad", "Dieta", "Temp minima", "Temp maxima"]
+                )
+                st.table(datosHabitats)
 
     def mostrar_mensaje_exitoso(self, mensaje):
         st.success(mensaje)
