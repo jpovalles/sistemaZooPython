@@ -17,7 +17,7 @@ class zooController:
 
             pass
         if opcion == 2: #CrearHabitat
-            self.vista.menuCrearHabitat(self.modelo.Zoo)
+            self.vista.menuCrearHabitat(self.modelo)
         if opcion == 3: #ListarHabitats y animales
             pass
         if opcion == 4: #AccionAnimales

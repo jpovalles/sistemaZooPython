@@ -8,9 +8,11 @@ class sistema:
     def __init__(self):
         self.zoologico = zooModel.Zoo(0)
         self.controlador = zooControl.zooController(self.zoologico, self)
-    
+
     def mostrarMenu(self):
+
         st.title("Bienvenido al GlizzyZoo 🐾")
+
         with st.container():
             col1, col2 = st.columns(2)
             col1.header("Crear animal")
@@ -42,6 +44,8 @@ class sistema:
             st.session_state["opcion"] = 4
         elif botonEditarDietas:
             st.session_state["opcion"] = 5
+        elif botonEditarDietas:
+            st.session_state["opcion"] = 6
 
         if "opcion" in st.session_state:
             self.controlador.ejecutarOpcion(st.session_state["opcion"])
@@ -71,18 +75,22 @@ class sistema:
 
         
     def menuCrearHabitat(self, Zoo):
+        arrNums=list(range(-10,41))
         st.divider()
-        with st.container:
+        with st.container():
             st.subheader("Formulario para crear e ingresar un nuevo habitat")
-            nombre = st.text_input("Nombre del habitat:", key=6)
+            nombre = st.text_input("Nombre del habitat:", key=69)
             tipoHabitat = st.selectbox("Elige el tipo de habitat:", Zoo.tipos)
             capacidad = st.slider("Ingresa la capacidad del habitat:", key = 7, min_value = 1, max_value = 10, step = 1)
             dieta = st.selectbox("Elige el tipo de dieta del habitat:", Zoo.dietas)
-            temp = st.select_slider("Ingresa el rango de temperatura",value=(-10, 40))
+            temp = st.select_slider("Ingresa el rango de temperatura",options = arrNums, value=(-10,40))
             botonAccion = st.button("Ingresar habitat")
 
         if botonAccion:
             pass
+
+    def agregar_animal_habitat(self):
+        animal =
 
     def mostrar_mensaje_exitoso(self, mensaje):
         st.success(mensaje)
