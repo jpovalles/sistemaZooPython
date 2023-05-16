@@ -4,8 +4,9 @@ import streamlit as st
 
 if __name__ == '__main__':
     st.set_page_config(
-        page_title="CRUD de una tienda",
-        layout="wide"
+        page_title = "GlizzyZoo",
+        layout = "wide",
+        page_icon = "🐾"
     )
     tienda = tiendaView.sistema()
     tienda.mostrarMenu()
