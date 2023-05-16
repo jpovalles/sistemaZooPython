@@ -1,9 +1,16 @@
+import streamlit as st
+
+
 class Zoo:
     def __init__(self, idAnimal):
         self.idAnimal = idAnimal
         self.comida = {}
         self.habitats = []
-        self.animales = {}
+        if "animales" in st.session_state:
+            self.animales = st.session_state["animales"]
+        else:
+            self.animales = {}
+            st.session_state["animales"] = {}
         self.tipos = ["Desertico", "Selvatico", "Polar", "Acuatico"]
         self.dietas = ["Carnivoro", "Omnivoro", "Herbivoro"]
         self.comida["Carnivoro"] = []
@@ -16,6 +23,7 @@ class Zoo:
 
     def agregarAnimal(self, animal):
         self.animales[animal.id]=animal
+        st.session_state["animales"] =self.animales
         self.idAnimal = self.idAnimal + 1
         return True
     

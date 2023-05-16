@@ -3,6 +3,7 @@ import model.Habitat as habitatModel
 import model.Zoo as zooModel
 import controller.zooController as zooControl
 import streamlit as st
+import pandas as pd
 
 class sistema:
     def __init__(self):
@@ -44,7 +45,7 @@ class sistema:
             st.session_state["opcion"] = 4
         elif botonEditarDietas:
             st.session_state["opcion"] = 5
-        elif botonEditarDietas:
+        elif botonAccionAgregar:
             st.session_state["opcion"] = 6
 
         if "opcion" in st.session_state:
@@ -74,15 +75,15 @@ class sistema:
                 return nuevoAnimal
 
         
-    def menuCrearHabitat(self, Zoo):
+    def menuCrearHabitat(self):
         arrNums = list(range(-10, 41))
         st.divider()
         with st.container():
             st.subheader("Formulario para crear e ingresar un nuevo habitat")
             nombre = st.text_input("Nombre del habitat:", key=69)
-            tipoHabitat = st.selectbox("Elige el tipo de habitat:", Zoo.tipos)
+            tipoHabitat = st.selectbox("Elige el tipo de habitat:", self.zoologico.tipos)
             capacidad = st.slider("Ingresa la capacidad del habitat:", key = 7, min_value = 1, max_value = 10, step = 1)
-            dieta = st.selectbox("Elige el tipo de dieta del habitat:", Zoo.dietas)
+            dieta = st.selectbox("Elige el tipo de dieta del habitat:", self.zoologico.dietas)
             temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
             botonAccion = st.button("Ingresar habitat")
 
@@ -95,11 +96,34 @@ class sistema:
                 nuevoHabitat = habitatModel.polar(nombre, tipoHabitat, capacidad, dieta, temperatura)
             elif tipoHabitat == "Acuatico":
                 nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+            self.zoologico.habitats.append(nuevoHabitat)
             st.success("El habitat fue creado correctamente")
             return nuevoHabitat
 
-    def agregar_animal_habitat(self):
-        animal =
+    def agregarAnimalHabitat(self, animales, habitats):
+        st.divider()
+        with st.container():
+            st.subheader("Agregar animal a habitat")
+            if len(animales)==0:
+                st.error("No hay animales para agregar")
+            #elif len(habitats)==0:
+                #st.error("No hay habitats para recibir animales")
+            else:
+                id = st.selectbox("Animal que desea agregar: ", animales.keys())
+                animalSeleccionado = self.getInfo(id, animales)
+                datosAnimal = [animalSeleccionado.id, animalSeleccionado.nombre, animalSeleccionado.habitat, animalSeleccionado.dieta]
+                datos = pd.DataFrame(
+                    datosAnimal,
+                    columns=["Id del animal", "Nombre", "Habitat", "dieta"]
+                )
+                st.table(datos)
+                nombreH = st.selectbox("Seleccione el habitat del animal: ")
+
+
+    def getInfo(self, id, animales):
+        for animal in animales:
+            if animal.id == id:
+                return animal
 
     def mostrar_mensaje_exitoso(self, mensaje):
         st.success(mensaje)
