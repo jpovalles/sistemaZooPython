@@ -76,9 +76,9 @@ class sistema:
         st.divider()
         with st.container():
             st.subheader("Formulario para crear e ingresar un nuevo habitat")
-            nombre = st.text_input("Nombre del habitat:", key=7)
+            nombre = st.text_input("Nombre del habitat:", key=8)
             tipoHabitat = st.selectbox("Elige el tipo de habitat:", self.zoologico.tipos)
-            capacidad = st.slider("Ingresa la capacidad del habitat:", key = 8, min_value = 1, max_value = 10, step = 1)
+            capacidad = st.slider("Ingresa la capacidad del habitat:", key = 9, min_value = 1, max_value = 10, step = 1)
             dieta = st.selectbox("Elige el tipo de dieta del habitat:", self.zoologico.dietas)
             temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
             botonAccion = st.button("Ingresar habitat")
@@ -138,7 +138,20 @@ class sistema:
                 nombreH = st.selectbox("Seleccione el habitat del animal: ")
     
     def eliminarComida(self):
-        pass
+        st.divider()
+
+        tipoDieta = st.selectbox("Selecciona el tipo de dieta", self.zoologico.dietas)
+
+        
+
+        with st.container():
+            if len(self.zoologico.comida[tipoDieta]) == 0:
+                st.error("La dieta no tiene alimentos para eliminar")
+            else:
+                alimento = st.selectbox("Seleccione la comida a eliminar", self.zoologico.comida[tipoDieta])
+                boton = st.button("Eliminar alimento")
+                if boton:
+                    return (tipoDieta, alimento)
 
     
     def agregarComida(self):
@@ -151,6 +164,18 @@ class sistema:
             boton = st.button("Agregar comida")
             if boton:
                 return (tipoDieta, alimento)
+
+    def imprimirDieta(self, tipoDieta):
+        st.divider()
+        with st.container():
+            if len(self.zoologico.comida[tipoDieta]) == 0:
+                st.error("La dieta esta vacia")
+            else:
+                datoDieta = pd.DataFrame(
+                    self.zoologico.comida[tipoDieta],
+                    columns = [tipoDieta]
+                )
+                st.table(datoDieta)
 
     def getInfo(self, id, animales):
         for animal in animales:
