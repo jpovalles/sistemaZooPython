@@ -25,9 +25,16 @@ class zooController:
             self.vista.listarAnimalesHabitats(self.modelo.animales, self.modelo.habitats)
         if opcion == 4: #AccionAnimales
             pass
-        if opcion == 5: #editarDietas
+        if opcion == 5: #agregarAlimento
+            try:
+                tuplaComida = self.vista.agregarComida()
+                if tuplaComida:
+                    self.modelo.agregarAlimento(tuplaComida[0], tuplaComida[1])
+            except ValueError:
+                self.vista.mostrar_mensaje_error("Se presento un error al crear la comida")
+        if opcion == 6: #eliminarAlimento
             pass
-        if opcion == 6:
+        if opcion == 7:
             self.vista.agregarAnimalHabitat(self.modelo.animales, self.modelo.habitats)
     
     def aplicarFormatoA(self, animales):
