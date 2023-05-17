@@ -10,6 +10,9 @@ class sistema:
         self.zoologico = zooModel.Zoo(0)
         self.controlador = zooControl.zooController(self.zoologico, self)
 
+    
+    
+
     def mostrarMenu(self):
 
         st.title("Bienvenido al GlizzyZoo 🐾")
@@ -23,6 +26,17 @@ class sistema:
                 botonEditarDietas = st.button("Acceder a esta opcion",5)
                 botonAccionAgregar=st.button("Agregar animal a habitat", 6)
 
+                botonEliminarComida = False
+                botonAgregarComida = False
+    
+                botonCrearAnimal = st.button("Crear animal",key=1, use_container_width = True)
+                botonCrearHabitat = st.button("Crear habitat",key=2, use_container_width = True)
+                botonListarHabitats = st.button("Listar habitats/animales",key=3, use_container_width = True)
+                botonAccionAnimales = st.button("Ejecuta una accion",key=4, use_container_width = True)
+                botonEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
+                botonAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
+                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
+
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
         elif botonCrearHabitat:
@@ -31,10 +45,12 @@ class sistema:
             st.session_state["opcion"] = 3
         elif botonAccionAnimales:
             st.session_state["opcion"] = 4
-        elif botonEditarDietas:
+        elif botonAgregarComida:
             st.session_state["opcion"] = 5
-        elif botonAccionAgregar:
+        elif botonEliminarComida:
             st.session_state["opcion"] = 6
+        elif botonAccionAgregar:
+            st.session_state["opcion"] = 7
 
         if "opcion" in st.session_state:
             self.controlador.ejecutarOpcion(st.session_state["opcion"])
@@ -147,6 +163,21 @@ class sistema:
                         else:
                             habitatSel.agregarAnimal(animalSel)
                             self.mostrar_mensaje_exitoso("El animal se agregó al habitat")
+    
+    #def eliminarComida(self):
+     ##   pass
+
+    
+    def agregarComida(self):
+        st.divider()
+        with st.container():
+            st.subheader("Agregar alimento")
+            tipoDieta = st.selectbox("Selecciona el tipo de dieta", self.zoologico.dietas)
+            alimento = st.text_input("Ingresa el alimento a agregar")
+
+            boton = st.button("Agregar comida")
+            if boton:
+                return (tipoDieta, alimento)
 
     def getInfo(self, id, animales):
         for animal in animales.keys():

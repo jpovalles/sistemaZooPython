@@ -10,7 +10,13 @@ class Zoo:
             self.idAnimal = 0
             st.session_state["idAnimal"] = 0
 
-        self.comida = {}
+        if "comida" in st.session_state:
+            self.comida = st.session_state["comida"]
+        else:
+            self.comida = {}
+            self.comida["Carnivoro"] = ["Cerdo", "Pavo", "Pollo"]
+            self.comida["Herbivoro"] = ["Semillas", "Frutas", "Hojas"]
+            self.comida["Omnivoro"] = ["Pescado", "Huevos", "Frutas"]
 
         if "habitats" in st.session_state:
             self.habitats = st.session_state["habitats"]
@@ -26,9 +32,6 @@ class Zoo:
 
         self.tipos = ["Desertico", "Selvatico", "Polar", "Acuatico"]
         self.dietas = ["Carnivoro", "Omnivoro", "Herbivoro"]
-        self.comida["Carnivoro"] = ["Cerdo", "Pavo", "Pollo"]
-        self.comida["Herbivoro"] = ["Semillas", "Frutas", "Hojas"]
-        self.comida["Omnivoro"] = ["Pescado", "Huevos", "Frutas"]
     
     def agregarHabitat(self, habitat):
         self.habitats.append(habitat)
@@ -36,9 +39,9 @@ class Zoo:
         return True
 
     def agregarAnimal(self, animal):
-        self.animales[animal.id]=animal
-        st.session_state["animales"] = self.animales
-        self.idAnimal += 1
+        self.animales[animal.id] = animal
+        self.idAnimal = self.idAnimal + 1
+        st.session_state["animales"] =self.animales
         st.session_state["idAnimal"] =self.idAnimal
         return True
     
@@ -50,6 +53,7 @@ class Zoo:
 
     def agregarAlimento(self, tipoDieta, alimento):
         self.comida[tipoDieta].append(alimento)
+        st.success("%s ha sido agregado con exito a la dieta %s" % (alimento, tipoDieta))
     
     def eliminarAlimento(self, tipoDieta, index):
         self.comida[tipoDieta].pop(index)
