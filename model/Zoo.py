@@ -6,7 +6,6 @@ class Zoo:
 
         self.idAnimal = idAnimal
         self.comida = {}
-        self.habitats = []
 
         if "habitats" in st.session_state:
             self.habitats = st.session_state["habitats"]
@@ -33,8 +32,8 @@ class Zoo:
 
     def agregarAnimal(self, animal):
         self.animales[animal.id]=animal
-        st.session_state["animales"] =self.animales
-        self.idAnimal = self.idAnimal + 1
+        st.session_state["animales"] = self.animales
+        self.idAnimal += 1
         return True
     
     def buscarComida(self, tipoDieta, alimento):
@@ -42,7 +41,7 @@ class Zoo:
             return self.comida[tipoDieta].index(alimento)
         else:
             return -1
-    
+
     def agregarAlimento(self, tipoDieta, alimento):
         self.comida[tipoDieta].append(alimento)
     
