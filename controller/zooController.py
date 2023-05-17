@@ -9,7 +9,7 @@ class zooController:
     def ejecutarOpcion(self, opcion):
         if opcion == 1:
             try:
-                nuevoAnimal =self.vista.menu_crear_animales(self.modelo.idAnimal)
+                nuevoAnimal =self.vista.menu_crear_animales(self.modelo.idAnimal, self.modelo)
                 if nuevoAnimal:
                     self.modelo.agregarAnimal(nuevoAnimal)
             except ValueError:

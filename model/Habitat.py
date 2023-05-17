@@ -1,21 +1,33 @@
+import streamlit as st
 class Habitat:
     def __init__(self,nombre, tipo, capacidad, dieta, temperatura):
         self.nombre = nombre
         self.tipo = tipo
         self.capacidad = capacidad
-        self.numeroAnimales = 0
+        if "cantidad" in st.session_state:
+            self.numeroAnimales = st.session_state["cantidad"]
+        else:
+            self.numeroAnimales = 0
+            st.session_state["cantidad"] = 0
         self.dieta = dieta
         self.temperatura = temperatura
-        self.mapaAnimales = dict()
+        if "mapaAnimales" in st.session_state:
+            self.mapaAnimales = st.session_state["mapaAnimales"]
+        else:
+            self.mapaAnimales = {}
+            st.session_state["mapaAnimales"] = {}
 
     def agregarAnimal(self, Animal):
         id = Animal.id
         self.mapaAnimales[id] = Animal
+        st.session_state["mapaAnimales"] = self.mapaAnimales
         self.numeroAnimales += 1
+        st.session_state["cantidad"] = self.numeroAnimales
     
     def eliminarAnimal(self, id):
         self.mapaAnimales.pop(id)
         self.numeroAnimales -= 1
+        st.session_state["cantidad"] = self.numeroAnimales
 
     def imprimirAnimales(self):
         cont = 1
