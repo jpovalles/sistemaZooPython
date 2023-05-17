@@ -4,7 +4,12 @@ import streamlit as st
 class Zoo:
     def __init__(self, idAnimal):
 
-        self.idAnimal = idAnimal
+        if "idAnimal" in st.session_state:
+            self.idAnimal = st.session_state["idAnimal"]
+        else:
+            self.idAnimal = []
+            st.session_state["idAnimal"] = []
+
         self.comida = {}
 
         if "habitats" in st.session_state:
@@ -34,6 +39,7 @@ class Zoo:
         self.animales[animal.id]=animal
         st.session_state["animales"] =self.animales
         self.idAnimal = self.idAnimal + 1
+        st.session_state["idAnimal"] =self.idAnimal
         return True
     
     def buscarComida(self, tipoDieta, alimento):
