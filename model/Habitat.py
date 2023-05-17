@@ -5,7 +5,7 @@ class Habitat:
         self.capacidad = capacidad
         self.numeroAnimales = 0
         self.dieta = dieta
-        self.temperatura = ()
+        self.temperatura = temperatura
         self.mapaAnimales = dict()
 
     def agregarAnimal(self, Animal):

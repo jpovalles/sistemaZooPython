@@ -14,26 +14,14 @@ class sistema:
 
         st.title("Bienvenido al GlizzyZoo 🐾")
 
-        with st.container():
-            col1, col2 = st.columns(2)
-            col1.header("Crear animal")
-            botonCrearAnimal = col1.button("Acceder a esta opcion",1)
-            col2.header("Crear habitat")
-            botonCrearHabitat = col2.button("Acceder a esta opcion",2)
-        
-        with st.container():
-            col1, col2 = st.columns(2)
-            col1.header("Listar habitats/animales")
-            botonListarHabitats = col1.button("Acceder a esta opcion",3)
-            col2.header("Ejecuta una accion")
-            botonAccionAnimales = col2.button("Acceder a esta opcion",4)
-
-        with st.container():
-            col1, col2 = st.columns(2)
-            col1.header("Editar dietas")
-            botonEditarDietas = col1.button("Acceder a esta opcion",5)
-            col2.header("Agregar animal a habitat")
-            botonAccionAgregar=col2.button("Acceder a esta opcion", 6)
+        with st.sidebar:
+                st.header("Elige una opcion:")
+                botonCrearAnimal = st.button("Crear animal",1)
+                botonCrearHabitat = st.button("Crear habitat",2)
+                botonListarHabitats = st.button("Listar habitats/animales",3)
+                botonAccionAnimales = st.button("Ejecuta una accion",4)
+                botonEditarDietas = st.button("Acceder a esta opcion",5)
+                botonAccionAgregar=st.button("Acceder a esta opcion", 6)
 
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
@@ -112,6 +100,7 @@ class sistema:
                 )
                 st.table(datoAnimales)
             
+            st.subheader("Listado de habitats")
             if len(habitats) == 0:
                 st.error("No hay habitats para listar")
             else:

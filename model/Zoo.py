@@ -6,7 +6,6 @@ class Zoo:
 
         self.idAnimal = idAnimal
         self.comida = {}
-        self.habitats = []
 
         if "habitats" in st.session_state:
             self.habitats = st.session_state["habitats"]
