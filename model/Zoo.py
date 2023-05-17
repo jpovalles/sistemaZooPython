@@ -50,7 +50,7 @@ class Zoo:
             return self.comida[tipoDieta].index(alimento)
         else:
             return -1
-    
+
     def agregarAlimento(self, tipoDieta, alimento):
         self.comida[tipoDieta].append(alimento)
         st.success("%s ha sido agregado con exito a la dieta %s" % (alimento, tipoDieta))
