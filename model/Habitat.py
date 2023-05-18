@@ -8,18 +8,12 @@ class Habitat:
         self.dieta = dieta
         self.temperatura = temperatura
         self.mapaAnimales = {}
-        # if "mapaAnimales" in st.session_state:
-        #     self.mapaAnimales = st.session_state["mapaAnimales"]
-        # else:
-        #     self.mapaAnimales = {}
-        #     st.session_state["mapaAnimales"] = {}
+
 
     def agregarAnimal(self, Animal):
         id = Animal.id
         self.mapaAnimales[id] = Animal
-        st.session_state["mapaAnimales"] = self.mapaAnimales
         self.numeroAnimales += 1
-        st.session_state["cantidad"] = self.numeroAnimales
     
     def eliminarAnimal(self, id):
         self.mapaAnimales.pop(id)

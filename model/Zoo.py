@@ -59,10 +59,13 @@ class Zoo:
 
     def agregarAlimento(self, tipoDieta, alimento):
         self.comida[tipoDieta].append(alimento)
+        st.session_state["comida"] = self.comida
         st.success("%s ha sido agregado con exito a la dieta %s" % (alimento, tipoDieta))
     
-    def eliminarAlimento(self, tipoDieta, index):
-        self.comida[tipoDieta].pop(index)
+    def eliminarAlimento(self, tipoDieta, alimento):
+        self.comida[tipoDieta].remove(alimento)
+        st.session_state["comida"] = self.comida
+        st.success("%s ha sido eliminado con exito a la dieta %s" % (alimento, tipoDieta))
 
     def mostrarDieta(self, tipoDieta):
         print("Dieta %s:" %tipoDieta)

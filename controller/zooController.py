@@ -28,15 +28,26 @@ class zooController:
             pass
         if opcion == 5: #agregarAlimento
             try:
-                tuplaComida = self.vista.agregarComida()
+                tuplaComida = self.vista.menuAgregarComida()
                 if tuplaComida:
                     self.modelo.agregarAlimento(tuplaComida[0], tuplaComida[1])
+                    self.vista.imprimirDieta(tuplaComida[0])
             except ValueError:
                 self.vista.mostrar_mensaje_error("Se presento un error al crear la comida")
         if opcion == 6: #eliminarAlimento
-            pass
+            try:
+                tuplaComida = self.vista.menuEliminarComida()
+                if tuplaComida:
+                    self.modelo.eliminarAlimento(tuplaComida[0], tuplaComida[1])
+                    self.vista.imprimirDieta(tuplaComida[0])
+                    time.sleep(2)
+                    st.experimental_rerun()
+            except ValueError:
+                self.vista.mostrar_mensaje_error("Se presento un error al eliminar la comida")
         if opcion == 7:
             self.vista.agregarAnimalHabitat(self.modelo.animales, self.modelo.habitats, self.modelo)
+        if opcion ==8:
+            self.vista.menuListarPorHabitat()
     
     def aplicarFormatoA(self, animales):
         datos = []
@@ -49,3 +60,4 @@ class zooController:
         for habitat in habitats:
             datos.append([habitat.nombre, habitat.tipo, habitat.numeroAnimales, habitat.capacidad, habitat.dieta, habitat.temperatura[0], habitat.temperatura[1]])
         return datos
+    
