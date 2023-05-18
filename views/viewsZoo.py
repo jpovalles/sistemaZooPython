@@ -18,17 +18,17 @@ class sistema:
         st.title("Bienvenido al GlizzyZoo 🐾")
 
         with st.sidebar:
-                botonEliminarComida = False
-                botonAgregarComida = False
+                botonmenuEliminarComida = False
+                botonmenuAgregarComida = False
     
                 botonCrearAnimal = st.button("Crear animal",key=1, use_container_width = True)
                 botonCrearHabitat = st.button("Crear habitat",key=2, use_container_width = True)
                 botonListarHabitats = st.button("Listar habitats/animales",key=3, use_container_width = True)
-                botonAccionAnimales = st.button("Ejecuta una accion",key=4, use_container_width = True)
-                botonEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
-                botonAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
-                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
                 botonListarPorHabitat = st.button("Listar animales por habitat", key=10, use_container_width=True)
+                botonAccionAnimales = st.button("Ejecuta una accion",key=4, use_container_width = True)
+                botonmenuEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
+                botonmenuAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
+                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
 
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
@@ -38,12 +38,14 @@ class sistema:
             st.session_state["opcion"] = 3
         elif botonAccionAnimales:
             st.session_state["opcion"] = 4
-        elif botonAgregarComida:
+        elif botonmenuAgregarComida:
             st.session_state["opcion"] = 5
-        elif botonEliminarComida:
+        elif botonmenuEliminarComida:
             st.session_state["opcion"] = 6
         elif botonAccionAgregar:
             st.session_state["opcion"] = 7
+        elif botonListarPorHabitat:
+            st.session_state["opcion"] = 8
 
         if "opcion" in st.session_state:
             self.controlador.ejecutarOpcion(st.session_state["opcion"])
@@ -157,7 +159,7 @@ class sistema:
                             habitatSel.agregarAnimal(animalSel)
                             self.mostrar_mensaje_exitoso("El animal se agregó al habitat")
     
-    def eliminarComida(self):
+    def menuEliminarComida(self):
         st.divider()
 
         tipoDieta = st.selectbox("Selecciona el tipo de dieta", self.zoologico.dietas)
@@ -172,7 +174,7 @@ class sistema:
                     return (tipoDieta, alimento)
 
     
-    def agregarComida(self):
+    def menuAgregarComida(self):
         st.divider()
         with st.container():
             st.subheader("Agregar alimento")
@@ -182,6 +184,34 @@ class sistema:
             boton = st.button("Agregar comida")
             if boton:
                 return (tipoDieta, alimento)
+            
+    def menuListarPorHabitat(self):
+        st.divider()
+        with st.container():
+            st.subheader("Animales en el GlizzyZoo 🐾")
+            if len(self.zoologico.habitats) == 0:
+                st.error("No hay habitats para listar animales")
+            else:
+                nombreHabitats = []
+                for habitat in self.zoologico.habitats:
+                    opcion = habitat.nombre + " | " + habitat.tipo + " | " + habitat.dieta
+                    nombreHabitats.append(opcion)
+
+                habitat = st.selectbox("Selecciona el habitat a listar", nombreHabitats)
+
+                animales = self.zoologico.habitats[nombreHabitats.index(habitat)].mapaAnimales
+
+                if len(animales) == 0:
+                    st.error("No hay animales para mostrar en este habitat")
+                else:
+                    boton = st.button("Listar animales")
+                    if boton:
+                        datoAnimales = pd.DataFrame(
+                            self.controlador.aplicarFormatoA(animales),
+                            columns = ["ID del animal", "Nombre", "Especie", "Tipo del habitat", "Dieta", "Estado de salud", "Edad", "Temperatura optima", "Horas de sueño"]
+                        )
+                        st.table(datoAnimales)
+
 
     def imprimirDieta(self, tipoDieta):
         st.divider()
