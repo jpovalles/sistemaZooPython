@@ -260,23 +260,29 @@ class sistema:
                 elif accion == "Comer":
                     self.menuComer(animalSel, zoo)
     def menuDormir(self, animal):
-        if animal.horasDormir != 0:
+        if animal.horasDormir != animal.horasDormidas:
             max = animal.horasDormir - animal.horasDormidas
             horasDormir = st.number_input("Seleccione las horas que dormirá el animal: ", min_value =0, max_value = max, step = 1)
             accion = st.button("Dormir")
             if accion:
                 if animal.dormir(horasDormir):
                     self.mostrar_mensaje_exitoso("El animal durmió")
+                    time.sleep(2)
+                    st.experimental_rerun()
         else:
             self.mostrar_mensaje_error("El animal ya durmió suficiente")
 
     def jugar(self, animal):
-        accion = st.button("Jugar")
-        if accion:
-            if animal.juego():
-                self.mostrar_mensaje_exitoso("El animal está jugando")
-            else:
-                self.mostrar_mensaje_error("El animal ya jugó lo suficiente hoy")
+        if animal.jugar:
+            self.mostrar_mensaje_error("El animal ya jugó lo suficiente hoy")
+        else:
+            accion = st.button("Jugar")
+            if accion:
+                if animal.juego():
+                    self.mostrar_mensaje_exitoso("El animal está jugando")
+                    time.sleep(2)
+                    st.experimental_rerun()
+
 
     def menuComer(self, animal, zoo):
         if len(zoo.comida[animal.dieta])==0:
@@ -296,7 +302,7 @@ class sistema:
         for habitat in habitats:
             if nombreH == habitat.nombre:
                 return habitat
-            
+
     def mostrar_mensaje_exitoso(self, mensaje):
         st.success(mensaje)
 
