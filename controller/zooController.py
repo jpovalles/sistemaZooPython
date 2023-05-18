@@ -24,6 +24,7 @@ class zooController:
         if opcion == 3: #ListarHabitats y animales
             self.vista.listarAnimalesHabitats(self.modelo.animales, self.modelo.habitats)
         if opcion == 4: #AccionAnimales
+            self.vista.realizarAccion(self.modelo.habitats, self.modelo)
             pass
         if opcion == 5: #agregarAlimento
             try:
@@ -35,7 +36,7 @@ class zooController:
         if opcion == 6: #eliminarAlimento
             pass
         if opcion == 7:
-            self.vista.agregarAnimalHabitat(self.modelo.animales, self.modelo.habitats)
+            self.vista.agregarAnimalHabitat(self.modelo.animales, self.modelo.habitats, self.modelo)
     
     def aplicarFormatoA(self, animales):
         datos = []

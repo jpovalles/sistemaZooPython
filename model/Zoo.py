@@ -38,6 +38,12 @@ class Zoo:
         st.session_state["habitats"] = self.habitats
         return True
 
+    def eliminarAnimal(self, id):
+        del self.animales[id]
+        st.session_state["animales"] = self.animales
+        return True
+
+
     def agregarAnimal(self, animal):
         self.animales[animal.id] = animal
         self.idAnimal = self.idAnimal + 1
@@ -63,3 +69,15 @@ class Zoo:
         for alimento in self.comida[tipoDieta]:
             print("\t%s" % alimento)
         print("-------------------------------")
+
+    def animalesEnHabitats(self):
+        idAnimales=[]
+        for habitat in self.habitats:
+            for animal in habitat.mapaAnimales.values():
+                idAnimales.append(animal.id)
+        return idAnimales
+
+    def obtenerAnimal(self, id):
+        for habitat in self.habitats:
+            if id in habitat.mapaAnimales:
+                return habitat.mapaAnimales[id]

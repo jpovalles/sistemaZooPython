@@ -4,18 +4,15 @@ class Habitat:
         self.nombre = nombre
         self.tipo = tipo
         self.capacidad = capacidad
-        if "cantidad" in st.session_state:
-            self.numeroAnimales = st.session_state["cantidad"]
-        else:
-            self.numeroAnimales = 0
-            st.session_state["cantidad"] = 0
+        self.numeroAnimales = 0
         self.dieta = dieta
         self.temperatura = temperatura
-        if "mapaAnimales" in st.session_state:
-            self.mapaAnimales = st.session_state["mapaAnimales"]
-        else:
-            self.mapaAnimales = {}
-            st.session_state["mapaAnimales"] = {}
+        self.mapaAnimales = {}
+        # if "mapaAnimales" in st.session_state:
+        #     self.mapaAnimales = st.session_state["mapaAnimales"]
+        # else:
+        #     self.mapaAnimales = {}
+        #     st.session_state["mapaAnimales"] = {}
 
     def agregarAnimal(self, Animal):
         id = Animal.id
