@@ -9,6 +9,7 @@ class Animal:
         self.edad = edad
         self.temperatura = temperatura
         self.horasDormir = horasDormir
+        self.horasDormidas = 0
         self.jugar = jugar
 
     def juego(self):
@@ -20,5 +21,5 @@ class Animal:
 
 
     def dormir(self, cantHoras):
-        self.horasDormir -= cantHoras
+        self.horasDormidas += cantHoras
         return True
