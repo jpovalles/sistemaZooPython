@@ -1,5 +1,6 @@
 import streamlit as st
 import time
+import requests
 
 class zooController:
     def __init__(self, modelo, vista):
@@ -47,7 +48,29 @@ class zooController:
             self.vista.agregarAnimalHabitat(self.modelo.animales, self.modelo.habitats)
         if opcion ==8:
             self.vista.menuListarPorHabitat()
+        if opcion == 9:
+            self.vista.menuAnimalAleatorio()
     
+    @staticmethod
+    def consultarAnimal(nombreAnimal):
+        api_url = 'https://api.api-ninjas.com/v1/animals?name=%s' % nombreAnimal
+        response = requests.get(api_url, headers={'X-Api-Key': 'zXTgRqeX7ZRefVaI5Z2Htw==I2Jov3xhZCOO9qQe'})
+
+        if response.status_code == requests.codes.ok:
+            response_json = response.json()
+            print(response_json)
+            if len(response_json) == 0:
+                st.error("Ingresa una especie valida")
+                st.error("NOTA: Recuerda ingresarla en ingles")
+                return 0
+            else:
+                print(len(response_json))
+                print(response_json[0])
+                return response_json[0]
+        else:
+            print("Error:", response.status_code, response.text)
+            return 0
+
     def aplicarFormatoA(self, animales):
         datos = []
         for key in animales:

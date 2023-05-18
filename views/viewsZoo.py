@@ -4,17 +4,19 @@ import model.Zoo as zooModel
 import controller.zooController as zooControl
 import streamlit as st
 import pandas as pd
+import requests
+import time
+
+
+
+
 
 class sistema:
     def __init__(self):
         self.zoologico = zooModel.Zoo(0)
         self.controlador = zooControl.zooController(self.zoologico, self)
 
-    
-    
-
     def mostrarMenu(self):
-
         st.title("Bienvenido al GlizzyZoo 🐾")
 
         with st.sidebar:
@@ -23,12 +25,13 @@ class sistema:
     
                 botonCrearAnimal = st.button("Crear animal",key=1, use_container_width = True)
                 botonCrearHabitat = st.button("Crear habitat",key=2, use_container_width = True)
+                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
                 botonListarHabitats = st.button("Listar habitats/animales",key=3, use_container_width = True)
                 botonListarPorHabitat = st.button("Listar animales por habitat", key=10, use_container_width=True)
                 botonAccionAnimales = st.button("Ejecuta una accion",key=4, use_container_width = True)
                 botonmenuEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
                 botonmenuAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
-                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
+                botonAnimalAleatorio = st.button("Datos curiosos", key=11, use_container_width = True)
 
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
@@ -46,7 +49,9 @@ class sistema:
             st.session_state["opcion"] = 7
         elif botonListarPorHabitat:
             st.session_state["opcion"] = 8
-
+        elif botonAnimalAleatorio:
+            st.session_state["opcion"] = 9
+            
         if "opcion" in st.session_state:
             self.controlador.ejecutarOpcion(st.session_state["opcion"])
 
@@ -69,6 +74,7 @@ class sistema:
             if botonAccion:
                 nuevoAnimal = animalModel.Animal(nombre, especie, habitat, dieta, estado, idAnimal, edad, temperatura, horasDormir, True)
                 st.success("Animal agregado al registro del Zoo correctamente")
+                st.success("NOTA: Recuerda agregar el animal a un habitat")
                 return nuevoAnimal
 
         
@@ -212,6 +218,38 @@ class sistema:
                         )
                         st.table(datoAnimales)
 
+    def menuAnimalAleatorio(self):
+        st.divider()
+        with st.container():
+            st.subheader("Genera datos curiosos sobre animales")
+
+            animal = st.text_input("Escribe una especie sobre la que te gustaria conocer más!")
+            st.warning("NOTA: Recuerda ingresar la especie en ingles")
+
+            boton = st.button("Consultar")
+
+            if boton:
+                animalApi = self.controlador.consultarAnimal(animal)
+
+                if animalApi != 0:
+                    listaAtributos = [animalApi['name'], animalApi['taxonomy']['kingdom'], animalApi['taxonomy']['phylum'], animalApi['taxonomy']['class'], animalApi['taxonomy']['order'], animalApi['taxonomy']['family'], animalApi['taxonomy']['genus'], animalApi['taxonomy']['scientific_name'], animalApi['locations'][0]]
+
+                    st.divider()
+                    with st.container():
+                        st.markdown('# This is the %s!' % listaAtributos[0])
+                        st.markdown('## Location: %s' % listaAtributos[8])
+                        st.markdown('* **Kingdom:** %s\n* **Phylum:** %s\n* **Class:** %s\n* **Order:** %s\n* **Family:** %s\n* **Genus:** %s\n* **Scientific name:** %s' % (listaAtributos[1], listaAtributos[2], listaAtributos[3], listaAtributos[4], listaAtributos[5], listaAtributos[6], listaAtributos[7]))
+
+                        '''
+                        st.markdown('# This is the %s' % listaAtributos[0])
+                        st.markdown('## %s' % listaAtributos[1])
+                        st.markdown('It is a **%s** animal and its diet is based on **%s**, but their favorite is **%s**.' % (listaAtributos[2], listaAtributos[3], listaAtributos[4]))
+                        st.markdown('It lives in %s and its habitat is the %s, and they lead a %s lifestyle.' % (listaAtributos[5], listaAtributos[6], listaAtributos[7]))
+                        st.markdown('* **Top speed:** %s\n* **Life expectancy:** %s\n* **Weight:** %s' % (listaAtributos[8], listaAtributos[9], listaAtributos[10]))
+                        '''
+                    botonLimpiar = st.button("Limpiar busqueda")
+                    if botonLimpiar:
+                        st.experimental_rerun()
 
     def imprimirDieta(self, tipoDieta):
         st.divider()
