@@ -256,7 +256,7 @@ class sistema:
                 elif accion == "Jugar":
                     self.jugar(animalSel)
                 elif accion == "Comer":
-                    pass
+                    self.menuComer(animalSel, zoo)
 
     def menuDormir(self, animal):
         if animal.horasDormir != 0:
@@ -276,6 +276,14 @@ class sistema:
             else:
                 self.mostrar_mensaje_error("El animal ya jugó lo suficiente hoy")
 
+    def menuComer(self, animal, zoo):
+        if len(zoo.comida[animal.dieta])==0:
+            self.mostrar_mensaje_error("No hay comida disponible para el tipo de alimentación del animal")
+        else:
+            st.selectbox("Seleccione el alimento: ", zoo.comida[animal.dieta])
+            accion = st.button("Alimentar")
+            if accion:
+                self.mostrar_mensaje_exitoso("El animal fue alimentado")
 
 
 

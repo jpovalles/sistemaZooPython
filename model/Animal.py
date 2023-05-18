@@ -22,9 +22,3 @@ class Animal:
     def dormir(self, cantHoras):
         self.horasDormir -= cantHoras
         return True
-
-    def comer(self, alimento, dieta):
-        if dieta :
-            print(self.nombre, " esta comiendo ", alimento, "\n")
-        else:
-            print(alimento, " no pertenece a la dieta de ", self.nombre, "\n")

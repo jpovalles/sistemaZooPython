@@ -20,24 +20,6 @@ class Habitat:
         self.numeroAnimales -= 1
         st.session_state["cantidad"] = self.numeroAnimales
 
-    def imprimirAnimales(self):
-        cont = 1
-        print("En %s de tipo %s se encuentran %i animales:\n" %(self.nombre, self.tipo, self.numeroAnimales))
-
-        for key in self.mapaAnimales:
-            tempAnimal = self.mapaAnimales[key]
-
-            print("%i)" % cont)
-            tempAnimal.mostrarAnimal
-            cont += 1
-    
-    def mostrarHabitats(self):
-        cont = 1
-        print("%i)" % cont)
-        
-        print("Nombre: %s\nTipo de habitat: %s\nCapacidad: %i/%i animales\nDieta: %s\nTemperatura: %i" %(self.nombre, self.tipo, self.numeroAnimales, self.capacidad, self.dieta, self.temperatura))
-        print("-------------------------------")
-
 class desertico(Habitat):
     def __init__(self, nombre, tipo, capacidad, dieta, temperatura):
         super().__init__(nombre, tipo, capacidad, dieta, temperatura)
