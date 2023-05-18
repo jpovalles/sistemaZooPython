@@ -39,6 +39,8 @@ class zooController:
                 if tuplaComida:
                     self.modelo.eliminarAlimento(tuplaComida[0], tuplaComida[1])
                     self.vista.imprimirDieta(tuplaComida[0])
+                    time.sleep(2)
+                    st.experimental_rerun()
             except ValueError:
                 self.vista.mostrar_mensaje_error("Se presento un error al eliminar la comida")
         if opcion == 7:

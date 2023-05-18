@@ -18,14 +18,6 @@ class sistema:
         st.title("Bienvenido al GlizzyZoo 🐾")
 
         with st.sidebar:
-                st.header("Elige una opcion:")
-                botonCrearAnimal = st.button("Crear animal",1)
-                botonCrearHabitat = st.button("Crear habitat",2)
-                botonListarHabitats = st.button("Listar habitats/animales",3)
-                botonAccionAnimales = st.button("Ejecuta una accion",4)
-                botonEditarDietas = st.button("Acceder a esta opcion",5)
-                botonAccionAgregar=st.button("Agregar animal a habitat", 6)
-
                 botonEliminarComida = False
                 botonAgregarComida = False
     
@@ -36,6 +28,7 @@ class sistema:
                 botonEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
                 botonAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
                 botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
+                botonListarPorHabitat = st.button("Listar animales por habitat", key=10, use_container_width=True)
 
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
@@ -169,11 +162,9 @@ class sistema:
 
         tipoDieta = st.selectbox("Selecciona el tipo de dieta", self.zoologico.dietas)
 
-        
-
         with st.container():
-            if len(self.zoologico.comida[tipoDieta]) == 0:
-                st.error("La dieta no tiene alimentos para eliminar")
+            if len(self.zoologico.comida[tipoDieta]) == 1:
+                st.error("La dieta debe contener al menos un alimento")
             else:
                 alimento = st.selectbox("Seleccione la comida a eliminar", self.zoologico.comida[tipoDieta])
                 boton = st.button("Eliminar alimento")
