@@ -34,7 +34,8 @@ class sistema:
                 botonAccionAnimales = st.button("Ejecutar una accion",key=4, use_container_width = True)
                 botonmenuEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
                 botonmenuAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
-                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
+                botonAnimalAleatorio = st.button("Datos curiosos", key=11, use_container_width = True)
+                botonAccionAgregar=st.button("Agregar animal al habitat", key=7, use_container_width = True)
 
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
