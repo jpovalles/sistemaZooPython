@@ -169,7 +169,7 @@ class sistema:
                             habitatSel.agregarAnimal(animalSel)
                             zoo.eliminarAnimal(animalSel.id)
                             self.mostrar_mensaje_exitoso("El animal se agregó al habitat")
-                            time.sleep(2)
+                            time.sleep(4)
                             st.experimental_rerun()
     
     def menuEliminarComida(self):
@@ -306,7 +306,7 @@ class sistema:
             if accion:
                 if animal.dormir(horasDormir):
                     self.mostrar_mensaje_exitoso("El animal durmió")
-                    time.sleep(2)
+                    time.sleep(4)
                     st.experimental_rerun()
         else:
             self.mostrar_mensaje_error("El animal ya durmió suficiente")
