@@ -28,7 +28,6 @@ class sistema:
     
                 botonCrearAnimal = st.button("Crear animal",key=1, use_container_width = True)
                 botonCrearHabitat = st.button("Crear habitat",key=2, use_container_width = True)
-                botonAccionAgregar=st.button("Animal al habitat", key=7, use_container_width = True)
                 botonListarHabitats = st.button("Listar habitats/animales",key=3, use_container_width = True)
                 botonListarPorHabitat = st.button("Listar animales por habitat", key=10, use_container_width=True)
                 botonAccionAnimales = st.button("Ejecutar una accion",key=4, use_container_width = True)
@@ -172,7 +171,7 @@ class sistema:
                             habitatSel.agregarAnimal(animalSel)
                             zoo.eliminarAnimal(animalSel.id)
                             self.mostrar_mensaje_exitoso("El animal se agregó al habitat")
-                            time.sleep(2)
+                            time.sleep(4)
                             st.experimental_rerun()
     
     def menuEliminarComida(self):
@@ -308,7 +307,7 @@ class sistema:
             if accion:
                 if animal.dormir(horasDormir):
                     self.mostrar_mensaje_exitoso("El animal durmió")
-                    time.sleep(2)
+                    time.sleep(4)
                     st.experimental_rerun()
         else:
             self.mostrar_mensaje_error("El animal ya durmió suficiente")
