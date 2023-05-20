@@ -169,7 +169,7 @@ class sistema:
                             habitatSel.agregarAnimal(animalSel)
                             zoo.eliminarAnimal(animalSel.id)
                             self.mostrar_mensaje_exitoso("El animal se agregó al habitat")
-                            time.sleep(4)
+                            time.sleep(2)
                             st.experimental_rerun()
     
     def menuEliminarComida(self):
