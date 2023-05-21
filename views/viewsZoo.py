@@ -114,7 +114,7 @@ class sistema:
                 st.error("No hay animales en el almacén para listar")
             else:
                 datoAnimales = pd.DataFrame(
-                    self.controlador.aplicarFormatoA(animales),
+                    self.controlador.aplicarFormatoAnimales(animales),
                     columns = ["ID del animal", "Nombre", "Especie", "Tipo del hábitat", "Dieta", "Estado de salud", "Edad", "Temperatura optima", "Horas de sueño"]
                 )
                 st.table(datoAnimales)
