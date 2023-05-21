@@ -136,8 +136,9 @@ class sistema:
             if len(animales)==0:
                 st.error("No hay animales para agregar")
             else:
-                id = st.selectbox("Animal que desea agregar: ", animales.keys())
-                animalSel = self.getInfo(id, animales)
+                opciones = self.getInfo(animales)
+                animalOp = st.selectbox("Animal que desea agregar: ", opciones)
+                animalSel = animales[opciones.index(animalOp)]
                 datos = pd.DataFrame(
                     [[animalSel.id, animalSel.nombre, animalSel.tipoHabitat, animalSel.dieta, animalSel.temperatura]],
                     columns=["Id del animal", "Nombre", "Habitat", "Dieta", "Temperatura optima"]
@@ -332,10 +333,12 @@ class sistema:
             if accion:
                 self.mostrar_mensaje_exitoso("El animal fue alimentado")
 
-    def getInfo(self, id, animales):
-        for animal in animales.keys():
-            if animal == id:
-                return animales[animal]
+    def getInfo(self, animales):
+        listaAnimales = []
+        for animal in animales:
+            opcion = animal.nombre + ' | ' + animal.especie
+            listaAnimales.append(opcion)
+        return listaAnimales
 
     def obtenerHabitat(self, nombreH, habitats):
         for habitat in habitats:
