@@ -80,7 +80,6 @@ class sistema:
 
         
     def menuCrearHabitat(self, zoo):
-        arrNums = list(range(-10, 41))
         st.divider()
         with st.container():
             st.subheader("Formulario para crear e ingresar un nuevo habitat")
@@ -88,19 +87,29 @@ class sistema:
             tipoHabitat = st.selectbox("Elige el tipo de habitat:", self.zoologico.tipos)
             capacidad = st.slider("Ingresa la capacidad del habitat:", key = 9, min_value = 1, max_value = 10, step = 1)
             dieta = st.selectbox("Elige el tipo de dieta del habitat:", self.zoologico.dietas)
-            temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
+            #temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
+            st.divider()
             if tipoHabitat == "Acuatico":
+                min = 0
+                max = 20
                 pH = st.slider("Ingresa el nivel de pH del agua: ", min_value = 0, max_value = 14, step = 1)
                 salinidad = st.number_input("Cantidad de gramos de sal por litro de agua: ", min_value = 0, max_value = 45, step =1)
             elif tipoHabitat == "Desertico":
+                min = 30
+                max = 40
                 tipoDesierto = st.selectbox("Seleccione el tipo de desierto:", ["Cálido", "Semiárido", "Frío", "Costero"])
-                uv = st.slider("Radiación solar:", min_value = 1, max_value = 10, step = 1)
+                uv = st.slider("Radiación solar (UV)", min_value = 1, max_value = 10, step = 1)
             elif tipoHabitat == "Selvatico":
+                min = 20
+                max = 35
                 humedad = st.slider("Porcentaje de humedad: ", min_value=50, max_value=100, step=1)
-                precipitacion = st.number_input("Nivel de precipitación en mm: ", min_value=1500, max_value=3000, step=1)
+                precipitacion = st.slider("Nivel de precipitación en mm: ", min_value=1500, max_value=3000, step=1)
             elif tipoHabitat == "Polar":
+                min = -10
+                max = 10
                 porHielo = st.slider("Porcentaje de hielo del habitat: ", min_value=25, max_value=100, step=1)
-                grosor = st.slider("Grosor del hielo en metros: ", min_value=1, max_value=5, step=1)
+                grosor = st.number_input("Grosor del hielo en metros: ", min_value=1, max_value=5, step=1)
+            temperatura = st.select_slider("Ingresa el rango de temperatura del habitat", options = self.controlador.arrNums(min, max), value = (min,max))
             botonAccion = st.button("Ingresar habitat")
 
         if botonAccion:

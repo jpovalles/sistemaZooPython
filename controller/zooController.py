@@ -90,3 +90,6 @@ class zooController:
             datos.append([habitat.nombre, habitat.tipo, habitat.numeroAnimales, habitat.capacidad, habitat.dieta, habitat.temperatura[0], habitat.temperatura[1]])
         return datos
     
+    @staticmethod
+    def arrNums(min, max):
+        return list(range(min, max+1))
