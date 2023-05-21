@@ -1,2 +1,2 @@
-# sistemaZooPython
-Sistema del zoologico adaptado al lenguaje python para el 3er proyecto de POO
+# GlizzyZoo 🐾
+El GlizzyZoo es una herramienta interactiva que permite crear, gestionar y simular un zoológico virtual. Proporciona funcionalidades para agregar animales con sus atributos específicos, así como también para crear y administrar hábitats de diferentes tipos. Garantiza que el ingreso de los animales a los habitats sean coherentes y que los animales siempre se encuentren en un ambiente optimo para ellos. Por otro lado, GlizzyZoo permite tambien realizar la gestion de las dietas del zoologico permitiendo agregar y eliminar alimentos de cada una de las dietas dispuestas en el zoologico.
