@@ -306,7 +306,7 @@ class sistema:
             if accion:
                 if animal.dormir(horasDormir):
                     self.mostrar_mensaje_exitoso("El animal durmió")
-                    time.sleep(4)
+                    time.sleep(2)
                     st.experimental_rerun()
         else:
             self.mostrar_mensaje_error("El animal ya durmió suficiente")
