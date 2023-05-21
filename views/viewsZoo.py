@@ -89,6 +89,18 @@ class sistema:
             capacidad = st.slider("Ingresa la capacidad del habitat:", key = 9, min_value = 1, max_value = 10, step = 1)
             dieta = st.selectbox("Elige el tipo de dieta del habitat:", self.zoologico.dietas)
             temperatura = st.select_slider("Ingresa el rango de temperatura", options = arrNums, value = (-10,40))
+            if tipoHabitat == "Acuatico":
+                pH = st.slider("Ingresa el nivel de pH del agua: ", min_value = 0, max_value = 14, step = 1)
+                salinidad = st.number_input("Cantidad de gramos de sal por litro de agua: ", min_value = 0, max_value = 45, step =1)
+            elif tipoHabitat == "Desertico":
+                tipoDesierto = st.selectbox("Seleccione el tipo de desierto:", ["Cálido", "Semiárido", "Frío", "Costero"])
+                uv = st.slider("Radiación solar:", min_value = 1, max_value = 10, step = 1)
+            elif tipoHabitat == "Selvatico":
+                humedad = st.slider("Porcentaje de humedad: ", min_value=50, max_value=100, step=1)
+                precipitacion = st.number_input("Nivel de precipitación en mm: ", min_value=1500, max_value=3000, step=1)
+            elif tipoHabitat == "Polar":
+                porHielo = st.slider("Porcentaje de hielo del habitat: ", min_value=25, max_value=100, step=1)
+                grosor = st.slider("Grosor del hielo en metros: ", min_value=1, max_value=5, step=1)
             botonAccion = st.button("Ingresar habitat")
 
         if botonAccion:
@@ -96,13 +108,13 @@ class sistema:
                 self.mostrar_mensaje_error("Ya existe un hábitat con este nombre")
             else:
                 if tipoHabitat == "Desertico":
-                    nuevoHabitat = habitatModel.desertico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+                    nuevoHabitat = habitatModel.desertico(nombre, tipoHabitat, capacidad, dieta, temperatura, tipoDesierto, uv)
                 elif tipoHabitat == "Selvatico":
-                    nuevoHabitat = habitatModel.selvatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+                    nuevoHabitat = habitatModel.selvatico(nombre, tipoHabitat, capacidad, dieta, temperatura, precipitacion, humedad)
                 elif tipoHabitat == "Polar":
-                    nuevoHabitat = habitatModel.polar(nombre, tipoHabitat, capacidad, dieta, temperatura)
+                    nuevoHabitat = habitatModel.polar(nombre, tipoHabitat, capacidad, dieta, temperatura, porHielo, grosor)
                 elif tipoHabitat == "Acuatico":
-                    nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura)
+                    nuevoHabitat = habitatModel.acuatico(nombre, tipoHabitat, capacidad, dieta, temperatura, pH, salinidad)
                 st.success("El habitat fue creado correctamente")
                 return nuevoHabitat
         
