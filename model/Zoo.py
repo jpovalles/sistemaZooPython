@@ -27,8 +27,8 @@ class Zoo:
         if "animales" in st.session_state:
             self.animales = st.session_state["animales"]
         else:
-            self.animales = {}
-            st.session_state["animales"] = {}
+            self.animales = []
+            st.session_state["animales"] = []
 
         self.tipos = ["Desertico", "Selvatico", "Polar", "Acuatico"]
         self.dietas = ["Carnivoro", "Omnivoro", "Herbivoro"]
@@ -45,7 +45,7 @@ class Zoo:
 
 
     def agregarAnimal(self, animal):
-        self.animales[animal.id] = animal
+        self.animales.append(animal)
         self.idAnimal = self.idAnimal + 1
         st.session_state["animales"] =self.animales
         st.session_state["idAnimal"] =self.idAnimal
