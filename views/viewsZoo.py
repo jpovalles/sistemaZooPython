@@ -223,7 +223,7 @@ class sistema:
     def menuListarPorHabitat(self):
         st.divider()
         with st.container():
-            st.subheader("Animales en el GlizzyZoo 🐾")
+            st.subheader("Animales en el zoo")
             if len(self.zoologico.habitats) == 0:
                 st.error("No hay habitats para listar animales")
             else:
