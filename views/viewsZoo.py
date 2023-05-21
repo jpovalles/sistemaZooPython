@@ -229,7 +229,7 @@ class sistema:
     def menuAnimalAleatorio(self):
         st.divider()
         with st.container():
-            st.subheader("Genera datos curiosos sobre animales")
+            st.subheader("Conoce más sobre los animales!")
 
             animal = st.text_input("Escribe una especie sobre la que te gustaria conocer más!")
             st.warning("NOTA: Recuerda ingresar la especie en ingles")
