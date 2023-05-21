@@ -74,8 +74,8 @@ class zooController:
 
     def aplicarFormatoA(self, animales):
         datos = []
-        for key in animales:
-            datos.append([animales[key].id, animales[key].nombre, animales[key].especie, animales[key].tipoHabitat, animales[key].dieta, animales[key].estado, animales[key].edad, animales[key].temperatura, animales[key].horasDormir])
+        for animal in animales:
+            datos.append([animal.id, animal.nombre, animal.especie, animal.tipoHabitat, animal.dieta, animal.estado, animal.edad, animal.temperatura, animal.horasDormir])
         return datos
 
     def aplicarFormatoH(self, habitats):
