@@ -21,20 +21,18 @@ class sistema:
 
         with st.sidebar:
                 st.header("Elige una opcion:")
-                botonEliminarComida = False
-                botonAgregarComida = False
                 botonmenuEliminarComida = False
                 botonmenuAgregarComida = False
     
                 botonCrearAnimal = st.button("Crear animal",key=1, use_container_width = True)
                 botonCrearHabitat = st.button("Crear habitat",key=2, use_container_width = True)
+                botonAccionAgregar=st.button("Agregar animal al habitat", key=7, use_container_width = True)
                 botonListarHabitats = st.button("Listar habitats/animales",key=3, use_container_width = True)
                 botonListarPorHabitat = st.button("Listar animales por habitat", key=10, use_container_width=True)
                 botonAccionAnimales = st.button("Ejecutar una accion",key=4, use_container_width = True)
                 botonmenuEliminarComida = st.button("Eliminar comida", key=5, use_container_width = True)
                 botonmenuAgregarComida = st.button("Agregar comida", key=6, use_container_width = True)
                 botonAnimalAleatorio = st.button("Datos curiosos", key=11, use_container_width = True)
-                botonAccionAgregar=st.button("Agregar animal al habitat", key=7, use_container_width = True)
 
         if botonCrearAnimal:
             st.session_state["opcion"] = 1
@@ -172,7 +170,7 @@ class sistema:
                             habitatSel.agregarAnimal(animalSel)
                             zoo.eliminarAnimal(animalSel.id)
                             self.mostrar_mensaje_exitoso("El animal se agregó al habitat")
-                            time.sleep(4)
+                            time.sleep(2)
                             st.experimental_rerun()
     
     def menuEliminarComida(self):
@@ -300,6 +298,7 @@ class sistema:
                     self.jugar(animalSel)
                 elif accion == "Comer":
                     self.menuComer(animalSel, zoo)
+
     def menuDormir(self, animal):
         if animal.horasDormir != animal.horasDormidas:
             max = animal.horasDormir - animal.horasDormidas
